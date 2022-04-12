@@ -12,14 +12,14 @@ if (!(month < "10")){
 if (!(day < '10')){
     day = '0'+ day;
 }
-if ((minutes<'10')){
+if (!(minutes<'10')){
     minutes = '0' + minutes;
 }
 
-if ((hour<'10')){
+if (!(hour<'10')){
     hour = '0' + hour;
 }
-if ((hour_f<'10')){
+if (!(hour_f<'10')){
     hour_f = '0' + hour_f;
 }
 hora_actual = hour + ':' + minutes;
