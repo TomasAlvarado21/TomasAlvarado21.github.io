@@ -4,24 +4,25 @@ month = String(date.getMonth() + 1);
 day = String(date.getDate());
 hour = String(date.getHours());
 minutes = String(date.getMinutes());
-hour_f = String(date.getHours()+3);
+hour_f = String((date.getHours()+3)%24);
 
-if (!(month < "10")){
+if (month < "10"){
     month = '0' + month;
 }
-if (!(day < '10')){
+if (day < '10'){
     day = '0'+ day;
 }
-if (!(minutes<'10')){
+if (minutes<'10'){
     minutes = '0' + minutes;
 }
 
-if (!(hour<'10')){
+if (hour<'10'){
     hour = '0' + hour;
 }
-if (!(hour_f<'10')){
+if (hour_f<'10'){
     hour_f = '0' + hour_f;
 }
+
 hora_actual = hour + ':' + minutes;
 fecha_actual = year + '-' + month + '-' + day + ' ' + hora_actual;
 
