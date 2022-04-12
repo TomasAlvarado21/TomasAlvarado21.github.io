@@ -12,7 +12,7 @@ if (!(month < "10")){
 if (!(day < '10')){
     day = '0'+ day;
 }
-if ((minutes<'10')){
+if (!(minutes<'10')){
     minutes = '0' + minutes;
 }
 
