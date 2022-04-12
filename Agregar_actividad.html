@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="./css/popup.css" type="text/css" media="screen">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" href="./Fotos/icono.png">
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/comunas-regiones.js"></script>
+    <script src="./js/mostrar-input.js"></script>
+    <script src="./js/validar.js"></script>
+    <script src="./js/fotos.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./css/popup.css">
+
+    <title>Agregar Actividad</title>
+</head>
+<body class="body">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+        <a class="navbar-brand" href="./index.html" id="nave">
+                <img src="./Fotos/icono-blanco.png" alt="Logo" style="width:40px;">
+        </a>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="./index.html">Pagina principal</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./Ver_actividades.html">Ver Actividades</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./Agregar_actividad.html">Agregar actividad</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./Estadisticas.html">Estadisticas</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
+    <div class="container">
+        <h1>Rellene el formulario para agregar una actividad.</h1>
+    </div>
+    <br>
+    
+    <div class="container" id="formulario">
+        <div class="form">
+            <form action="" method="post" onsubmit="return validar()">
+                <h2>Donde se va a realizar?</h2>
+                <select id="regiones" name="region"></select>
+                <select id="comunas" name="comuna"></select>
+                <br>
+                <label for="sector">Sector:</label>
+                <input type="text" class="form-control" name="sector" id="sector" maxlength="100">
+                <h2>Quien organiza?</h2>
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" maxlength="100" required>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" maxlength="100" required>
+                <br>
+                <label for="celular">Numero de celular:</label>
+                <input type="text" class="form-control" id="celular" name="celular">
+                <br><br>
+                <label for="contactar-por">Contactar por:</label>
+                <select name="contactar-por"  id="contactar-por">
+                    <option value="">Elija</option>
+                    <option value='facebook'>Facebook</option>
+                    <option value='twitter'>Twitter</option>
+                    <option value='instagram'>Instagram</option>
+                    <option value='telegram'>Telegram</option>
+                    <option value='whatsapp'>Whatsapp</option>
+                    <option value='tiktok'>Tiktok</option>
+                    <option value='otra'>Otra</option>
+                </select>
+                <br>
+                <div class="input-group" id="inputs">
+                    <div><input type="text" id="input-facebook" class="rrss" name="input-facebook" minlength="4" maxlength="50" placeholder="Agregue su id de Facebook"></div>
+                    <div><input type="text" id="input-twitter" class="rrss" name="input-twitter" minlength="4" maxlength="50" placeholder="Agregue su id de Twitter"></div>
+                    <div><input type="text" id="input-instagram" class="rrss" name="input-instagram" minlength="4" maxlength="50" placeholder="Agregue su id de Instagram"></div>
+                    <div><input type="text" id="input-telegram" class="rrss" name="input-telegram" minlength="4" maxlength="50" placeholder="Agregue su id de Telegram"></div>
+                    <div><input type="text" id="input-whatsapp" class="rrss" name="input-whatsapp" minlength="4" maxlength="50" placeholder="Agregue su id de Whatsapp"></div>
+                    <div><input type="text" id="input-tiktok" class="rrss" name="input-tiktok" minlength="4" maxlength="50" placeholder="Agregue su id de Tiktok"></div>
+                    <div><input type="text" id="input-otra" class="rrss"  name="input-otra" minlength="4" maxlength="50" placeholder="Agregue su id o URL"></div>
+                </div>
+                <br><button type="button" class="btn btn-secondary" id="reset-btn">Reset selection button</button>
+                <br>
+                <script src="./js/reset.js"></script>
+                <br>
+                <h2>Cuando y de que trata?</h2>
+                <label for="dia-hora-inicio">Fecha y hora de inicio:</label>
+                <input type="text" value="2022-03-01 13:30" maxlength="20" pattern="[0-9]{4}-(0[0-9]|[1][0-2])-[0-9]{2} (0[0-9]|[1][0-9]|2[0-3]):[0-5][0-9]" name="dia-hora-inicio" id="dia-hora-inicio" class="fecha">
+                <br>
+                <label for="dia-hora-termino">Fecha y hora de termino:</label>
+                <input type="text" value="2022-03-01 13:30" maxlength="20"  pattern="[0-9]{4}-(0[0-9]|[1][0-2])-[0-9]{2} (0[0-9]|[1][0-9]|2[0-3]):[0-5][0-9]" name="dia-hora-termino" id="dia-hora-termino" class="fecha" >
+                <br>
+                <label for="descripcion-evento">Añada una descripcion del evento:</label><br>
+                <textarea name="descripcion-evento" class="form-control" id="descripcion-evento" cols="50" rows="10"></textarea>
+                <br>
+                <div> 
+                    <label for="tema">Elija un tema para la actividad: </label>
+                    <select name="tema" id="tema" required>
+                        <option value="">Elija</option>
+                        <option value="deporte">deporte</option>
+                        <option value="ciencias">ciencias</option>
+                        <option value="religion">religion</option>
+                        <option value="politica">politica</option>
+                        <option value="tecnologia">tecnologia</option>
+                        <option value="juegos">juegos</option>
+                        <option value="baile">baile</option>
+                        <option value="comida">comida</option>
+                        <option value="otro">otro</option>
+                    </select>
+                    <input type="text" name="otro-tema" id="otro-tema" minlength="3" maxlength="20">
+                </div>
+                <br>
+                <div  id="agregar-foto">
+                    <input type="file" name="foto-actividad" id="foto-actividad" class="foto-actividad" required>
+                </div>
+                <br>
+                <button type="button" class="btn btn-secondary" onclick="agregar()" id="add-pht">Pulse para agregar foto</button><p>*Al pulsar se resetearan las fotos ya adjuntadas.</p>
+                <br>
+                <div class="contenedor">
+                    
+                    <button id="btn-abrir-popup" class="btn btn-secondary" type="button">Enviar formulario?</button>
+                    
+            
+                    <div class="overlay" id="overlay">
+                        <div class="popup" id="popup">
+                            <h3>Deseas Mandar el formulario?</h3>
+                            <input type="button" id="btn-cerrar-popup" class="btn btn-secondary" value="No, mejor no.">
+                            <input type="submit" class="btn btn-secondary" onsubmit="return validar()" value="Upload">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <p id="parrafo-errores"></p>
+    </div>
+    
+
+
+	<script src="./js/popup.js"></script>
+
+    <script src="./js/fotos.js"></script>
+    <script src="./js/fecha.js"></script>
+    <script src="./js/mostrar-input.js"></script>
+</body>
+</html>
