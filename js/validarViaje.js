@@ -89,10 +89,6 @@ function validarEmail(email) {
       return true;
   
     } else {
-  
-      alert("Invalid email address!");
-  
-  
       return false;
   
     }

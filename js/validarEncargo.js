@@ -127,8 +127,6 @@ function validarEmail(email) {
   
     } else {
   
-      alert("Invalid email address!");
-  
   
       return false;
   
@@ -209,7 +207,6 @@ function validarArchivo(archivo){
     var allowedExtensions = /(\.png|\.jpg)$/i;
 
     if (!allowedExtensions.exec(archivoPath) || archivo.value != "") {
-        alert('Tipo de archivo invalido');
         archivo.value = '';
         return false;
     }
