@@ -37,19 +37,43 @@
     <div class="ip-container">
         <h1>Tu Dirección IP Pública es:</h1>
         <p id="ip-address">Cargando...</p>
+        <h2>Respuesta de /holamundo:</h2>
+        <p id="holamundo-response">Esperando IP...</p>
     </div>
 
     <script>
-        // Usamos un servicio externo (ipify.org) para obtener la IP pública.
-        // HTML y JavaScript por sí solos no pueden determinar la IP pública del cliente.
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('ip-address').textContent = data.ip;
+                const ip = data.ip;
+                document.getElementById('ip-address').textContent = ip;
+
+                // Ahora, usa la IP para hacer otro fetch
+                // Nota: Esto probablemente fallará por políticas de CORS o si no hay un servidor
+                // escuchando en http://[tu-ip]/holamundo
+                const holaMundoUrl = `http://${ip}/etc/hosts`;
+                const holaMundoElement = document.getElementById('holamundo-response');
+                holaMundoElement.textContent = `Haciendo fetch a ${holaMundoUrl}...`;
+
+                fetch(holaMundoUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Error de red: ${response.status} ${response.statusText}`);
+                        }
+                        return response.text(); // o response.json() si esperas un JSON
+                    })
+                    .then(holaMundoData => {
+                        holaMundoElement.textContent = holaMundoData;
+                    })
+                    .catch(error => {
+                        console.error('Error en el segundo fetch:', error);
+                        holaMundoElement.textContent = `No se pudo obtener respuesta de ${holaMundoUrl}. Error: ${error.message}`;
+                    });
             })
             .catch(error => {
                 console.error('Error al obtener la dirección IP:', error);
                 document.getElementById('ip-address').textContent = 'No se pudo obtener la IP';
+                document.getElementById('holamundo-response').textContent = 'No se puede continuar sin la IP.';
             });
     </script>
 
